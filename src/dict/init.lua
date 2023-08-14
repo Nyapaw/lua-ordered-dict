@@ -15,6 +15,7 @@ dict.__index = dict
     dict:clear()
     dict:get(key) -> value
     dict:pairs() -> iterator
+    dict:table() -> table
 ]]
 dict.new = function(...) -- key value pairs
     local self = setmetatable({}, dict)
@@ -90,6 +91,14 @@ function dict:pairs()
             return v.k, v.v
         end
     end
+end
+
+function dict:table()
+    local tbl = {}
+    for k, v in self:pairs() do
+        tbl[k.k] = v.v
+    end
+    return tbl
 end
 
 return dict
