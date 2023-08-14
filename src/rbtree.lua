@@ -26,7 +26,6 @@
 	_debug_inOrder()
     _debug_postOrder()
     _debug_preOrder()
-    add(value)
     addAll(...)
     clear()
     erase(value)
@@ -39,7 +38,9 @@
     preOrderArray()
     remove(value)
     update(value)
-
+	    
+	add(value) -> boolean
+	erase(value) -> boolean
 	exists(value) -> boolean
 	empty() -> boolean
     size() -> int
@@ -404,11 +405,14 @@ RedBlackDbTree.update = RedBlackDbTree.UpdateObject
 -- Method for adding a new node into the tree
 function RedBlackDbTree:Add(newObject : any)
 	assert(newObject, NULL_OBJECT_ERROR)
-	if self:ContainsObject(newObject) then return end
+	if self:ContainsObject(newObject) then 
+		return false 
+	end
 	
 	self.Root = add(self, self.Root, newObject)
 	self.Root.c = BLACK
 	self.Size += 1
+	return true
 end
 RedBlackDbTree.add = RedBlackDbTree.Add
 
@@ -463,7 +467,7 @@ function RedBlackDbTree:Remove(object : any)
 	assert(object, NULL_OBJECT_ERROR)
 
 	if not self:ContainsObject(object) then
-		return
+		return false
 	end
 
 	-- if both children of root are black, set root to red
@@ -477,6 +481,7 @@ function RedBlackDbTree:Remove(object : any)
 	if not self:IsEmpty() then
 		self.Root.c = BLACK
 	end
+	return true
 end
 RedBlackDbTree.remove = RedBlackDbTree.Remove
 
