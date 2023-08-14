@@ -9,7 +9,7 @@ Motivation
 
 Lua tables are great, but they don't remember the order of key-value pair assignments. This is a problem when you want to iterate over the table in the order that the key-value pairs were assigned. 
 
-```
+```lua
 local dict = {
     a = 1,
     b = 2,
@@ -28,18 +28,18 @@ This library solves that problem.
 Assignment and retrieval of key-value pairs is, amortized, O(log(n)), using a modified version of theeman05's red-black tree library.
 
 Example:
-```
+```lua
 local dict = require(path.to.dict)
 
-local mydict = dict:init(
+local mydict = dict.new(
     {'a', 1}, 
     {'b', 2}, 
     {'c', 3}, 
     {'d', 4}
 )
 
-mydict.set('e', 5)
-print(mydict.get('d')) -- 4
+mydict:set('e', 5)
+print(mydict:get('d')) -- 4
 for k, v in mydict:pairs() do
     print(k, v) -- in order: a 1, b 2, c 3, d 4, e 5
 end
