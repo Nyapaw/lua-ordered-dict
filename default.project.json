@@ -1,5 +1,5 @@
 {
-  "name": "RedBlackDbTree",
+  "name": "lua-ordered-dict",
   "tree": {
     "$className": "DataModel",
 
