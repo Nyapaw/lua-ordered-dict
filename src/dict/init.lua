@@ -10,9 +10,10 @@ dict.__index = dict
 --[[
     dict.new(<pair>...) -> dict
 
-    dict.init(<pair>...)
-    dict.set(key, value)
-    dict.get(key) -> value
+    dict:init(<pair>...)
+    dict:set(key, value)
+    dict:clear()
+    dict:get(key) -> value
     dict:pairs() -> iterator
 ]]
 dict.new = function(...) -- key value pairs
